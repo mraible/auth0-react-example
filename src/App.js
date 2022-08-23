@@ -1,26 +1,17 @@
-import React  from 'react';
+import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
-import { OktaAuth, toRelativeUrl } from '@okta/okta-auth-js';
-import { Security } from '@okta/okta-react';
 import Routes from './Routes';
-
-const oktaAuth = new OktaAuth({
-  issuer: 'https://dev-17700857.okta.com/oauth2/default',
-  clientId: '0oa66eo2b0gvHGqwR5d7',
-  redirectUri: window.location.origin + '/callback'
-});
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const App = () => {
-  const navigate = useNavigate();
-  const restoreOriginalUri = (_oktaAuth,  originalUri) => {
-    navigate(toRelativeUrl(originalUri || '/', window.location.origin));
-  };
 
   return (
-    <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
-      <Routes />
-    </Security>
+    <Auth0Provider
+      domain="dev-06bzs1cu.us.auth0.com"
+      clientId="fgYBSiDHttKZHEBWd8Jpd3QNPPYRyznl"
+      redirectUri={window.location.origin}>
+      <Routes/>
+    </Auth0Provider>
   );
 }
 

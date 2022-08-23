@@ -1,33 +1,29 @@
 import React from 'react';
-
 import './App.css';
 import logo from './logo.svg';
-import { useOktaAuth } from '@okta/okta-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Home = () => {
-  const { authState, oktaAuth } = useOktaAuth();
+  const { isLoading, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-  const login = async () => oktaAuth.signInWithRedirect();
-  const logout = async () => oktaAuth.signOut();
-
-  if (!authState) {
+  if (isLoading) {
     return (
       <div>Loading...</div>
     );
   }
 
   let body;
-  if (authState.isAuthenticated) {
+  if (isAuthenticated) {
     body = (
       <div className="Buttons">
-        <button onClick={logout}>Logout</button>
+        <button onClick={() => logout({ returnTo: window.location.origin })}>Logout</button>
         {/* Replace me with your root component. */}
       </div>
     );
   } else {
     body = (
       <div className="Buttons">
-        <button onClick={login}>Login</button>
+        <button onClick={loginWithRedirect}>Login</button>
       </div>
     );
   }
