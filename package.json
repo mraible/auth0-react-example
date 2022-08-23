@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "1.10.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --setupFiles=./src/jest.setup.js",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -35,13 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@oktadev/schematics": "file:../../oktadev-schematics-5.2.2.tgz"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^@okta/okta-auth-js$": "<rootDir>/node_modules/@okta/okta-auth-js/dist/okta-auth-js.umd.js"
-    }
   }
 }
